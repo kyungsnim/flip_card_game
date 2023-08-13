@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flip_card_game/importer.dart';
+import 'package:get/get.dart';
 
 class FlipCardGame extends StatefulWidget {
   Level level;
@@ -23,7 +24,7 @@ class _FlipCardGameState extends State<FlipCardGame> {
   bool _wait = false;
   late Level _level;
   late Timer _timer;
-  int _time = 5;
+  int _time = 7;
   late int _left;
   late bool _isFinished;
   late List<String> _data;
@@ -64,11 +65,11 @@ class _FlipCardGameState extends State<FlipCardGame> {
     );
     _cardFlips = getInitialItemState(_level);
     _cardStateKeys = getCardStateKeys(_level);
-    _time = 5;
+    _time = 7;
     _left = (_data.length ~/ 2);
 
     _isFinished = false;
-    Future.delayed(const Duration(seconds: 6), () {
+    Future.delayed(const Duration(seconds: 8), () {
       setState(() {
         _start = true;
         _timer.cancel();
@@ -93,28 +94,57 @@ class _FlipCardGameState extends State<FlipCardGame> {
     return _isFinished
         ? Scaffold(
       body: Center(
-        child: GestureDetector(
-          onTap: () {
-            setState(() {
-              restart();
-            });
-          },
-          child: Container(
-            height: 50,
-            width: 200,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: Colors.blue,
-              borderRadius: BorderRadius.circular(24),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  restart();
+                });
+              },
+              child: Container(
+                height: 50,
+                width: 200,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.circular(24),
+                ),
+                child: Text(
+                  "Replay",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 17,
+                      fontWeight: FontWeight.w500),
+                ),
+              ),
             ),
-            child: Text(
-              "Replay",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 17,
-                  fontWeight: FontWeight.w500),
+            SizedBox(height: 20),
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  Get.offAll(() => HomePage());
+                });
+              },
+              child: Container(
+                height: 50,
+                width: 200,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: Colors.grey,
+                  borderRadius: BorderRadius.circular(24),
+                ),
+                child: Text(
+                  "Home",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 17,
+                      fontWeight: FontWeight.w500),
+                ),
+              ),
             ),
-          ),
+          ],
         ),
       ),
     )
@@ -147,7 +177,7 @@ class _FlipCardGameState extends State<FlipCardGame> {
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
+                    crossAxisCount: widget.level == Level.Hard ? 4 : 3,
                   ),
                   itemBuilder: (context, index) =>
                   _start
@@ -193,7 +223,7 @@ class _FlipCardGameState extends State<FlipCardGame> {
                               });
                               if (_cardFlips
                                   .every((t) => t == false)) {
-                                print("Won");
+                                // print("Won");
                                 Future.delayed(
                                     const Duration(milliseconds: 160),
                                         () {
@@ -214,7 +244,7 @@ class _FlipCardGameState extends State<FlipCardGame> {
                         decoration: BoxDecoration(
                             color: Colors.grey,
                             borderRadius: BorderRadius.circular(5),
-                            boxShadow: [
+                            boxShadow: const [
                               BoxShadow(
                                 color: Colors.black45,
                                 blurRadius: 3,
@@ -222,7 +252,7 @@ class _FlipCardGameState extends State<FlipCardGame> {
                                 offset: Offset(2.0, 1),
                               )
                             ]),
-                        margin: EdgeInsets.all(4.0),
+                        margin: const EdgeInsets.all(4.0),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Image.asset(

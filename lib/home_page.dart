@@ -124,22 +124,22 @@ class Details {
 List<Details> _list = [
   Details(
     name: 'EASY',
-    primaryColor: Colors.green,
-    secondaryColor: Colors.green[200]!,
+    primaryColor: Colors.blueAccent,
+    secondaryColor: Colors.blueAccent[100]!,
     numOfStar: 1,
     goto: FlipCardGame(level: Level.Easy),
   ),
   Details(
     name: 'MEDIUM',
-    primaryColor: Colors.orange,
-    secondaryColor: Colors.orange[300]!,
+    primaryColor: Colors.yellowAccent,
+    secondaryColor: Colors.limeAccent.shade200,
     numOfStar: 2,
     goto: FlipCardGame(level: Level.Medium),
   ),
   Details(
     name: 'HARD',
-    primaryColor: Colors.red,
-    secondaryColor: Colors.red[300]!,
+    primaryColor: Colors.redAccent,
+    secondaryColor: Colors.redAccent.shade100,
     numOfStar: 3,
     goto: FlipCardGame(level: Level.Hard),
   ),
