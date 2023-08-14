@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "560596271592",
+    "project_id": "flip-card-abf4d",
+    "storage_bucket": "flip-card-abf4d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:560596271592:android:916ecf4cb68f6f4dd4a45d",
+        "android_client_info": {
+          "package_name": "com.kyungsnim.flip_card_game"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "560596271592-3utrbccc2315cjjae0o9td237667a08r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAocTwGJRxvlvvJCUfQDMpZUBCWc0vuVg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "560596271592-3utrbccc2315cjjae0o9td237667a08r.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "560596271592-fvpkpng1ti2s0lvmkt26hua9sjt810av.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.kyungsnim.flipCardGame"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

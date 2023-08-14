@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>560596271592-fvpkpng1ti2s0lvmkt26hua9sjt810av.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.560596271592-fvpkpng1ti2s0lvmkt26hua9sjt810av</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDeuaknm6JbWqdQzeBb8VFFrhq-VWvi9K8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>560596271592</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.kyungsnim.flipCardGame</string>
+	<key>PROJECT_ID</key>
+	<string>flip-card-abf4d</string>
+	<key>STORAGE_BUCKET</key>
+	<string>flip-card-abf4d.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:560596271592:ios:335bb0f9a0593307d4a45d</string>
+</dict>
+</plist>

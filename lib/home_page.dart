@@ -1,4 +1,6 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'importer.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,80 +14,119 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: ListView.builder(
-            itemCount: _list.length,
-            itemBuilder: (BuildContext context, int index) {
-              return GestureDetector(
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => _list[index].goto!,
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Stack(
-                    children: [
-                      Container(
-                        height: 100,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            color: _list[index].primaryColor,
-                            borderRadius: BorderRadius.circular(30),
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 4,
-                                color: Colors.black45,
-                                spreadRadius: 0.5,
-                                offset: Offset(3, 4),
-                              ),
-                            ]),
+        body: Column(
+          children: [
+            Flexible(
+              child: ListView.builder(
+                shrinkWrap: true,
+                  itemCount: _list.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return GestureDetector(
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => _list[index].goto!,
+                        ),
                       ),
-                      Container(
-                        alignment: Alignment.center,
-                        height: 90,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            color: _list[index].secondaryColor,
-                            borderRadius: BorderRadius.circular(30),
-                            boxShadow: [
-                              BoxShadow(
-                                  blurRadius: 4,
-                                  color: Colors.black12,
-                                  spreadRadius: 0.3,
-                                  offset: Offset(5, 3))
-                            ]),
-                        child: Column(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Stack(
                           children: [
-                            Center(
-                              child: Text(
-                                _list[index].name,
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.bold,
-                                    shadows: [
-                                      Shadow(
-                                        color: Colors.black26,
-                                        blurRadius: 2,
-                                        offset: Offset(1, 2),
-                                      )
-                                    ]),
+                            Container(
+                              height: 100,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                  color: _list[index].primaryColor,
+                                  borderRadius: BorderRadius.circular(30),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      blurRadius: 4,
+                                      color: Colors.black45,
+                                      spreadRadius: 0.5,
+                                      offset: Offset(3, 4),
+                                    ),
+                                  ]),
+                            ),
+                            Container(
+                              alignment: Alignment.center,
+                              height: 90,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                  color: _list[index].secondaryColor,
+                                  borderRadius: BorderRadius.circular(30),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        blurRadius: 4,
+                                        color: Colors.black12,
+                                        spreadRadius: 0.3,
+                                        offset: Offset(5, 3))
+                                  ]),
+                              child: Column(
+                                children: [
+                                  Center(
+                                    child: Text(
+                                      _list[index].name,
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.bold,
+                                          shadows: [
+                                            Shadow(
+                                              color: Colors.black26,
+                                              blurRadius: 2,
+                                              offset: Offset(1, 2),
+                                            )
+                                          ]),
+                                    ),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: _generateStar(_list[index].numOfStar!),
+                                  ),
+                                ],
                               ),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: _generateStar(_list[index].numOfStar!),
-                            ),
+                            )
                           ],
                         ),
-                      )
-                    ],
+                      ),
+                    );
+                  }),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  RichText(
+                    text: TextSpan(
+                      text: "앱에서 사용한 모든 아이콘은 ",
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 14,
+                        ),
+                      children: [
+                        TextSpan(
+                          text: 'www.flaticon.com',
+                          style: TextStyle(
+                            decoration: TextDecoration.underline,
+                          ),
+                          recognizer: TapGestureRecognizer()..onTap = () {
+                            _launchUrl();
+                          },
+                        ),
+                        TextSpan(
+                          text: '에서\nFreepik이 만든 아이콘을 이용하였습니다.'
+                        )
+                      ]
+                    ),
+                    textAlign: TextAlign.end,
                   ),
-                ),
-              );
-            }));
+                ],
+              ),
+            )
+          ],
+        ));
   }
 
   List<Widget> _generateStar(int num) {
@@ -102,6 +143,15 @@ class _HomePageState extends State<HomePage> {
     }
 
     return _icons;
+  }
+
+  Future<void> _launchUrl() async {
+
+    final Uri _url = Uri.parse('https://www.flaticon.com');
+
+    if (!await launchUrl(_url)) {
+      throw Exception('Could not launch $_url');
+    }
   }
 }
 

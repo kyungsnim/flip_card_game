@@ -38,7 +38,7 @@ List<String> getSourceArray(Level level) {
   sourceArray.shuffle();
 
   if (level == Level.Hard) {
-    for (int i = 0; i < 9; i++) {
+    for (int i = 0; i < 10; i++) {
       levelList.add(sourceArray[i]);
       levelList.add(sourceArray[i]);
     }
@@ -62,7 +62,7 @@ List<bool> getInitialItemState(Level level) {
   List<bool> initialItemState = [];
 
   if (level == Level.Hard) {
-    for(int i = 0; i < 18; i++) {
+    for(int i = 0; i < 20; i++) {
       initialItemState.add(true);
     }
   } else if (level == Level.Medium) {
@@ -81,7 +81,7 @@ List<GlobalKey<FlipCardState>> getCardStateKeys(Level level) {
   List<GlobalKey<FlipCardState>> cardStateKeys = [];
 
   if (level == Level.Hard) {
-    for (int i = 0; i < 18; i++) {
+    for (int i = 0; i < 20; i++) {
       cardStateKeys.add(GlobalKey<FlipCardState>());
     }
   } else if (level == Level.Medium) {
